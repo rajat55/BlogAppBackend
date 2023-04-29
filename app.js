@@ -42,7 +42,7 @@ moongose.connect( mongoUrlCloud2, (err) => {
 app.get("/", (req, res) => {
   console.log("Hello from home page");
   res.send("Helo from server side");
-  res.json({ name: rajat });
+  //res.json({ name: rajat });
 });
 
 app.post("/register",  async (req, res) => {
@@ -85,21 +85,21 @@ app.post('/login' , async (req,res) =>{
 
   if(ifCredentialtrue ){
     console.log(ifCredentialtrue.pass,password); 
-    const passAuth = bcrypt.compareSync(password,ifCredentialtrue.pass);
+    const passAuth =  bcrypt.compareSync(password,ifCredentialtrue.pass);
  
     if(passAuth){
      const payload = {
       email,
       name:ifCredentialtrue.name
      }
-     const token = jwt.sign(payload, secret);
+     const token =  jwt.sign(payload, secret);
 
       res.cookie('userToken' , token);
       return res.status(202).json({Sucess:true});
     }
-  }
+  }else{
     res.send({Succes:false})
-  
+  }
 
 })
 
