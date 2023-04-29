@@ -84,6 +84,7 @@ app.post('/login' , async (req,res) =>{
  
 
   if(ifCredentialtrue ){
+    
     console.log(ifCredentialtrue.pass,password); 
     const passAuth =  bcrypt.compareSync(password,ifCredentialtrue.pass);
  
@@ -94,8 +95,8 @@ app.post('/login' , async (req,res) =>{
      }
      const token =  jwt.sign(payload, secret);
 
-      res.cookie('userToken' , token);
-      return res.status(202).json({Sucess:true});
+      //res.cookie('userToken' , token);
+      return res.status(202).json({Sucess:true,userToken:token});
     }
   }else{
     res.send({Succes:false})
@@ -103,9 +104,10 @@ app.post('/login' , async (req,res) =>{
 
 })
 
-app.get('/profile' , (req,res)=>{
-  console.log(req.cookies.userToken);
-   jwt.verify(req.cookies.userToken,secret,{},(err,data) =>{
+app.post('/profile' , (req,res)=>{
+  //console.log(req.cookies.userToken);
+  const userToken = req.body.userToken;
+   jwt.verify(userToken,secret,{},(err,data) =>{
     if(err){
       console.log("Error from profile",err);
       res.json({sucess: false});
