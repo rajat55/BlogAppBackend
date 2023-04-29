@@ -142,9 +142,10 @@ app.post('/createpost' ,upload.single('image'), async(req,res)=>{
   fs.renameSync(path,path+"."+ext);
   
 var dbUser;
-  jwt.verify(req.cookies.userToken,secret,{}, async (err,data) =>{
+  jwt.verify(req.body.userToken,secret,{}, async (err,data) =>{
     if(err){
       console.log("Error in jwt");
+      res.send({sucess:false})
       
     }else{
        const {email} = data;
