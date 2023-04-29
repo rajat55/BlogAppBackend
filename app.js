@@ -105,11 +105,14 @@ app.post('/login' , async (req,res) =>{
 
 app.get('/profile' , (req,res)=>{
   console.log(req.cookies.userToken);
-  jwt.verify(req.cookies.userToken,secret,{},(err,data) =>{
+   jwt.verify(req.cookies.userToken,secret,{},(err,data) =>{
     if(err){
+      console.log("Error from profile",err);
       res.json({sucess: false});
     }else{
+      console.log("data from profile",data);
       res.json({
+        
         "sucess":"true",
         ...data
       })
