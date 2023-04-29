@@ -19,7 +19,7 @@ const salt = bcrypt.genSaltSync(saltRounds);
 const secret = "hdie94jiur9niur49";
 
 app.use(express.json());
-app.use(cors({credentials:true,origin:"http://localhost:3000"}));
+app.use(cors({credentials:true,origin:"https://rajatplusmern1.netlify.app/"}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
