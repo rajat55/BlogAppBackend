@@ -31,7 +31,7 @@ app.use('/uploads',express.static(__dirname+"/uploads"));
 const mongoLocalHost = "mongodb://127.0.0.1:27017/VlogWebsite";
 const mongoUrlCloud2 = "mongodb+srv://rajatrajgupta19:MuWk2EcP30rQu0Ck@cluster0.lufqnmv.mongodb.net/Blog-Website";
 const mongoUrlCloud = 'mongodb+srv://rajatrajgupta19:MuWk2EcP30rQu0Ck@cluster0.lufqnmv.mongodb.net/Blog-Web'
-moongose.connect(mongoUrlCloud2, (err) => {
+moongose.connect( mongoUrlCloud2, (err) => {
   if (err) {
     console.log("error", err.message);
   } else {
