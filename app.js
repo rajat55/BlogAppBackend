@@ -49,17 +49,7 @@ app.post("/register",  async (req, res) => {
   console.log(req.body);
   console.log("register");
   const {name,email,pass=" "} = req.body;
-  try {
-    const dbr = await UserModel.findOne({email});
-    if(dbr){
-      res.ok(false);
-      return res.send({message:"User Exists",
-    userCreate:false})
-    }
-    
-  } catch(e){
-    res.send({error:"error"});
-  }
+
 
   const hash = bcrypt.hashSync(pass, salt);
 
